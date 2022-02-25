@@ -60,8 +60,11 @@ public class LoginFormController {
                     "-h", txtHost.getText(),
                     "-u", txtUserName.getText(),
                     "--port", txtPort.getText(),
-                    "-p" + txtPassword.getText(),
+                    "-p",
                     "-e", "exit").start();
+
+            mysql.getOutputStream().write(txtPassword.getText().getBytes());
+            mysql.getOutputStream().close();
 
             int exitCode = mysql.waitFor();
             if (exitCode != 0) {
