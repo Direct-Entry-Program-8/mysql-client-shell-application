@@ -6,8 +6,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Region;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 public class LoginFormController {
 
@@ -68,7 +70,19 @@ public class LoginFormController {
 
             int exitCode = mysql.waitFor();
             if (exitCode != 0) {
-                new Alert(Alert.AlertType.ERROR, "Can't establish the connection, try again").show();
+
+                InputStream es = mysql.getErrorStream();
+                byte[] buffer = new byte[es.available()];
+                es.read(buffer);
+                es.close();
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Connection failure");
+                alert.setHeaderText("Can't establish the connection");
+                alert.setContentText(new String(buffer));
+                alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+                alert.show();
+
                 txtUserName.requestFocus();
                 txtUserName.selectAll();
             } else {
