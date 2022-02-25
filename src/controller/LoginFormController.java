@@ -42,14 +42,21 @@ public class LoginFormController {
             return;
         }
 
-        String command = String.format("mysql -h %s -u %s -p%s --port %s",
+        String command = String.format("mysql -h %s -u %s -p%s --port %s -e exit",
                 txtHost.getText(),
                 txtUserName.getText(),
                 txtPassword.getText(),
                 txtPort.getText());
         try {
             Process mysql = Runtime.getRuntime().exec(command);
-            System.out.println(mysql.waitFor());
+            int exitCode = mysql.waitFor();
+            if (exitCode !=0){
+                new Alert(Alert.AlertType.ERROR, "Can't establish the connection, try again").show();
+                txtUserName.requestFocus();
+                txtUserName.selectAll();
+            }else{
+                System.out.println("Wade Goda!");
+            }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
