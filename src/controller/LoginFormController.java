@@ -102,7 +102,7 @@ public class LoginFormController {
                         txtPassword.getText());
                 stage.centerOnScreen();
                 stage.setTitle("MySQL Client Shell");
-                Platform.runLater(() -> stage.sizeToScene());
+                Platform.runLater(stage::sizeToScene);
             }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
