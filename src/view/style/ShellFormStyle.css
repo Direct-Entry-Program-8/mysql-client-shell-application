@@ -1,0 +1,8 @@
+#txtCommand{
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #868686 transparent;
+    -fx-border-width: 2px;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+}

@@ -17,7 +17,7 @@ public class AppInitializer extends Application {
         AnchorPane root = FXMLLoader.load(this.getClass().getResource("/view/LoginForm.fxml"));
         Scene loginScene = new Scene(root);
         primaryStage.setScene(loginScene);
-        primaryStage.setTitle("MySQL Client Shell Application: Login");
+        primaryStage.setTitle("MySQL Client Shell: Login");
         primaryStage.setResizable(false);
         primaryStage.centerOnScreen();
         primaryStage.show();
