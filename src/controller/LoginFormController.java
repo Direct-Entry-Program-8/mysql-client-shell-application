@@ -90,13 +90,19 @@ public class LoginFormController {
                 txtUserName.requestFocus();
                 txtUserName.selectAll();
             } else {
-                AnchorPane root = FXMLLoader.load(this.getClass().getResource("/view/ShellForm.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/view/ShellForm.fxml"));
+                AnchorPane root = fxmlLoader.load();
                 Scene shellScene = new Scene(root);
                 Stage stage = (Stage) txtUserName.getScene().getWindow();
                 stage.setScene(shellScene);
+                ShellFormController controller = fxmlLoader.getController();
+                controller.initData(txtHost.getText(),
+                        txtPort.getText(),
+                        txtUserName.getText(),
+                        txtPassword.getText());
                 stage.centerOnScreen();
                 stage.setTitle("MySQL Client Shell");
-                Platform.runLater(()-> stage.sizeToScene());
+                Platform.runLater(() -> stage.sizeToScene());
             }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
