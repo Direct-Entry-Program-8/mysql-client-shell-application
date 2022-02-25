@@ -7,6 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 public class ShellFormController {
     public TextField txtCommand;
@@ -30,6 +31,7 @@ public class ShellFormController {
                     mysql.destroy();
                 }
             });
+
         } catch (IOException e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Failed to establish the connection for some reason").show();
@@ -40,5 +42,21 @@ public class ShellFormController {
     }
 
     public void btnExecute_OnAction(ActionEvent actionEvent) {
+        String statement = txtCommand.getText();
+        if (!txtCommand.getText().endsWith(";")){
+            statement += ";";
+        }
+        try {
+            System.out.println(mysql.isAlive());
+            mysql.getOutputStream().write(statement.getBytes());
+            mysql.getOutputStream().flush();
+
+            InputStream is = mysql.getErrorStream();
+            byte[] buffer = new byte[1024];
+            System.out.println(is.read(buffer));
+            txtOutput.setText(new String(buffer));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
