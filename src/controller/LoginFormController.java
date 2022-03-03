@@ -101,6 +101,7 @@ public class LoginFormController {
                         txtUserName.getText(),
                         txtPassword.getText());
                 stage.centerOnScreen();
+                stage.setResizable(true);
                 stage.setTitle("MySQL Client Shell");
                 Platform.runLater(stage::sizeToScene);
             }
