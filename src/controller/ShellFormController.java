@@ -18,7 +18,6 @@ public class ShellFormController {
     private Process mysql;
 
     public void initialize() {
-        txtCommand.setText("SHOW DATABASES;");
         txtOutput.setWrapText(true);
     }
 
@@ -114,7 +113,7 @@ public class ShellFormController {
                             txtOutput.setText("Welcome to DEP-8 MySQL Client Shell\n" +
                                               "----------------------------------------\n\n" +
                                             "Please enter your command above to proceed.\nThank you! \uD83D\uDE09" +
-                                    "\n\nCopyright © 2022 DEP8 IJSE. All Rights Reserved.");
+                                    "\n\nCopyright © 2022 DEP8 IJSE. All Rights Reserved.\n");
                         }
                     });
                 }

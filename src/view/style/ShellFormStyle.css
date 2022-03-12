@@ -6,6 +6,7 @@
     -fx-background-radius: 0;
     -fx-padding: 0;
     -fx-font-family: monospace;
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);
 }
 
 #txtOutput{
