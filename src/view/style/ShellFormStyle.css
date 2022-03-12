@@ -5,4 +5,9 @@
     -fx-border-radius: 0;
     -fx-background-radius: 0;
     -fx-padding: 0;
+    -fx-font-family: monospace;
+}
+
+#txtOutput{
+    -fx-font-family: monospace;
 }
